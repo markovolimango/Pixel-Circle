@@ -11,7 +11,7 @@ sf::Color hex_to_rgb(std::string hex) {
 }
 
 float distance(const sf::Vector2<float> a, const sf::Vector2<float> b) {
-    return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+    return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
 sf::Vector2f pixel_center(sf::Vector2<unsigned> pixel_pos) {
