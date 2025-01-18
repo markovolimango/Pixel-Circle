@@ -10,21 +10,21 @@ sf::Color hex_to_rgb(std::string hex) {
     return c;
 }
 
-float distance(const sf::Vector2f a, const sf::Vector2f b) {
+float distance(const sf::Vector2<float> a, const sf::Vector2<float> b) {
     return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
-sf::Vector2f pixel_center(sf::Vector2u pixel_pos) {
+sf::Vector2f pixel_center(sf::Vector2<unsigned> pixel_pos) {
     return {(float) pixel_pos.x + 0.5f, (float) pixel_pos.y + 0.5f};
 }
 
 void fill(sf::Image &image, const float r, const sf::Color color) {
     unsigned const width = image.getSize().x, height = image.getSize().y;
-    sf::Vector2f const center((float) width / 2, (float) height / 2);
+    sf::Vector2 const center((float) width / 2, (float) height / 2);
 
     for (unsigned x = 0; x < width; x++) {
         for (unsigned y = 0; y < height; y++) {
-            sf::Vector2u p(x, y);
+            sf::Vector2 p(x, y);
             if (distance(pixel_center(p), center) <= r) {
                 image.setPixel(p, color);
             }
@@ -34,11 +34,11 @@ void fill(sf::Image &image, const float r, const sf::Color color) {
 
 void outline(sf::Image &image, const float r, const float thickness, const sf::Color color) {
     unsigned const width = image.getSize().x, height = image.getSize().y;
-    sf::Vector2f const center((float) width / 2, (float) height / 2);
+    sf::Vector2<float> const center((float) width / 2, (float) height / 2);
 
     for (unsigned x = 0; x < width; x++) {
         for (unsigned y = 0; y < height; y++) {
-            sf::Vector2u p(x, y);
+            sf::Vector2 p(x, y);
             float dist = distance(pixel_center(p), center);
             if (dist <= r + thickness / 2 && dist >= r - thickness / 2) {
                 image.setPixel(p, color);
