@@ -13,8 +13,8 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 add_executable(main src/main.cpp
-        src/pixel-circle.h
+        include/pixel-circle.h
         src/pixel-circle.cpp)
 target_compile_features(main PRIVATE cxx_std_17)
 target_link_libraries(main PRIVATE SFML::Graphics)
-target_compile_definitions(main PRIVATE ROOT_DIR="${CMAKE_SOURCE_DIR}")
+target_include_directories(main PRIVATE ${PROJECT_SOURCE_DIR}/include)

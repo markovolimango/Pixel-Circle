@@ -60,7 +60,7 @@ int main() {
 
     if (i < n && line[i] == '#') {
         try {
-            fill_color = hex_to_rgb(line.substr(i, 7));
+            fill_color = pxl::hex_to_rgb(line.substr(i, 7));
             fill_color_entered = true;
         } catch (std::invalid_argument &e) {
             std::cerr << "Error: \"" << e.what() << "\" is not a valid HEX value." << std::endl;
@@ -84,7 +84,7 @@ int main() {
     skip_empty(line, i);
     if (i < n && line[i] == '#') {
         try {
-            outline_color = hex_to_rgb(line.substr(i, 7));
+            outline_color = pxl::hex_to_rgb(line.substr(i, 7));
         } catch (std::invalid_argument &e) {
             std::cerr << "Error: \"" << e.what() << "\" is not a valid HEX value." << std::endl;
             return 1;
@@ -94,8 +94,8 @@ int main() {
     sf::Image image({diameter + static_cast<unsigned>(thickness), diameter + static_cast<unsigned>(thickness)},
                     sf::Color::White);
     float radius = static_cast<float>(diameter) / 2;
-    fill(image, radius, fill_color);
-    outline(image, radius, thickness, outline_color);
+    pxl::fill(image, radius, fill_color);
+    pxl::outline(image, radius, thickness, outline_color);
 
     if (image.saveToFile("circle_image.png")) {
         std::cout << "Image saved as circle_image.png\n";
