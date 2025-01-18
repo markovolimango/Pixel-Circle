@@ -1,3 +1,4 @@
+#include <cmath>
 #include "pixel-circle.h"
 
 sf::Color hex_to_rgb(std::string hex) {
