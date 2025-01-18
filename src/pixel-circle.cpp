@@ -2,11 +2,13 @@
 #include "pixel-circle.h"
 
 sf::Color hex_to_rgb(std::string hex) {
-    if (hex[0] == '#') hex = hex.substr(1, hex.length() - 1);
     sf::Color c;
-    c.r = stoi(hex.substr(0, 2), nullptr, 16);
-    c.g = stoi(hex.substr(2, 2), nullptr, 16);
-    c.r = stoi(hex.substr(4, 2), nullptr, 16);
+    if (hex[0] != '#' || hex.length() != 7) {
+        throw std::invalid_argument(hex);
+    }
+    c.r = stoi(hex.substr(1, 2), nullptr, 16);
+    c.g = stoi(hex.substr(3, 2), nullptr, 16);
+    c.b = stoi(hex.substr(5, 2), nullptr, 16);
     c.a = 255;
     return c;
 }

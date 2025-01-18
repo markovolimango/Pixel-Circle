@@ -1,9 +1,10 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 
 #ifndef PIXEL_CIRCLE_H
 #define PIXEL_CIRCLE_H
 
-sf::Color hex_to_rgb(const std::string &hex);
+sf::Color hex_to_rgb(std::string hex);
 
 float distance(sf::Vector2<float> a, sf::Vector2<float> b);
 
