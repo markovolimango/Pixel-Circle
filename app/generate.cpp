@@ -1,7 +1,6 @@
 #include <iostream>
 #include "pixel-circle.h"
 
-
 int main() {
     float a = 0, b = 0, thickness = 0;
     sf::Color fill_color = sf::Color::Black, outline_color;
