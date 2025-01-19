@@ -12,9 +12,9 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp
+add_executable(generate app/generate.cpp
         include/pixel-circle.h
         src/pixel-circle.cpp)
-target_compile_features(main PRIVATE cxx_std_17)
-target_link_libraries(main PRIVATE SFML::Graphics)
-target_include_directories(main PRIVATE ${PROJECT_SOURCE_DIR}/include)
+target_compile_features(generate PRIVATE cxx_std_17)
+target_link_libraries(generate PRIVATE SFML::Graphics)
+target_include_directories(generate PRIVATE ${PROJECT_SOURCE_DIR}/include)

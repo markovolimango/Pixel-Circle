@@ -4,15 +4,13 @@
 
 int main() {
     float a = 0, b = 0, thickness = 0;
-    sf::Color fill_color = sf::Color::Black, outline_color = sf::Color::Black;
-    std::string hex;
+    sf::Color fill_color = sf::Color::Black, outline_color;
     std::string line;
     bool fill_color_entered = false;
-    unsigned long pos;
 
     std::cout << "Dimensions: ";
     std::getline(std::cin, line);
-    pos = 0;
+    unsigned long pos = 0;
     pxl::skip_empty(line, pos);
     try {
         a = pxl::read_num(line, pos);
@@ -75,16 +73,16 @@ int main() {
 
     a /= 2;
     b /= 2;
-    sf::Image image({static_cast<unsigned>(2 * a + 2 * thickness), static_cast<unsigned>(2 * b + 2 * thickness)},
+    sf::Image image({static_cast<unsigned>(2 * a + thickness), static_cast<unsigned>(2 * b + thickness)},
                     sf::Color::Transparent);
     pxl::fill(image, a, b, fill_color);
     pxl::outline(image, a, b, thickness, outline_color);
 
-    if (image.saveToFile("circle_image.png")) {
-        std::cout << "Image saved as circle_image.png\n";
-        return 0;
-    } else {
+    const std::string filename = "circle.png";
+    if (!image.saveToFile(filename)) {
         std::cerr << "Failed to save image.\n";
         return 1;
     }
+    std::cout << "Image saved as \"" << filename << "\".\n";
+    return 0;
 }
