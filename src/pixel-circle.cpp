@@ -39,19 +39,6 @@ namespace pxl {
             }
     }
 
-    //input
-
-    bool is_digit(const char c) {
-        return c >= '0' && c <= '9';
-    }
-
-    void skip_empty(const std::string &line, unsigned long &pos) {
-        if (pos >= line.length())
-            return;
-        while (line[pos] == ' ')
-            pos++;
-    }
-
     sf::Color hex_to_rgb(const std::string &hex) {
         sf::Color color;
         color.r = stoi(hex.substr(0, 2), nullptr, 16);
@@ -59,40 +46,5 @@ namespace pxl {
         color.b = stoi(hex.substr(4, 2), nullptr, 16);
         color.a = 255;
         return color;
-    }
-
-    sf::Color read_color(const std::string &line, unsigned long &pos) {
-        if (pos >= line.length())
-            return sf::Color::Black;
-        if (line[pos] == '#')
-            pos++;
-        return hex_to_rgb(line.substr(pos, 6));
-    }
-
-    float read_num(const std::string &line, unsigned long &pos) {
-        if (pos >= line.length()) return 0;
-        if (!is_digit(line[pos])) {
-            std::string invalid_res;
-            while (pos < line.length() && line[pos] != ' ') {
-                invalid_res += line[pos];
-                pos++;
-            }
-            throw std::invalid_argument(invalid_res);
-        }
-        float res = 0;
-        while (is_digit(line[pos])) {
-            res = res * 10 + static_cast<float>(line[pos] - '0');
-            pos++;
-        }
-        if (line[pos] == '.') {
-            pos++;
-            float exp = 10;
-            while (is_digit(line[pos])) {
-                res += static_cast<float>(line[pos] - '0') / exp;
-                exp *= 10;
-                pos++;
-            }
-        }
-        return res;
     }
 }
