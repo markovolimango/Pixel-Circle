@@ -5,13 +5,13 @@
 #define PIXEL_CIRCLE_H
 
 #if defined(_WIN32)
-#   if defined(EXPORTING)
-#       define DECLSPEC __declspec(dllexport)
-#   else
-#       define DECLSPEC __declspec(dllimport)
-#   endif
+#if defined(EXPORTING)
+#define DECLSPEC __declspec(dllexport)
 #else
-#   define DECLSPEC
+#define DECLSPEC __declspec(dllimport)
+#endif
+#else
+#define DECLSPEC
 #endif
 
 namespace pxl {

@@ -25,7 +25,7 @@ target_include_directories(pixel-circle PUBLIC
 )
 target_link_libraries(pixel-circle PUBLIC SFML::Graphics)
 if (BUILD_SHARED_LIBS)
-    target_compile_definitions(pixel-circle PRIVATE "EXPORTING")
+    target_compile_definitions(pixel-circle PUBLIC "EXPORTING")
 endif ()
 
 add_executable(generate app/generate.cpp)
