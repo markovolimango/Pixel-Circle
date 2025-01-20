@@ -12,17 +12,10 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-if (BUILD_SHARED_LIBS)
-    set(BUILD_TYPE SHARED)
-else ()
-    set(BUILD_TYPE STATIC)
-endif ()
-
-add_library(pixel-circle ${BUILD_TYPE}
+add_library(pixel-circle STATIC
         ${PROJECT_SOURCE_DIR}/include/pixel-circle.h
         ${PROJECT_SOURCE_DIR}/src/pixel-circle.cpp
 )
-target_compile_definitions(pixel-circle PRIVATE BUILD_PIXEL_CIRCLE)
 target_include_directories(pixel-circle PUBLIC
         "${PROJECT_SOURCE_DIR}/include"
 )
