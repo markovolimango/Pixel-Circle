@@ -4,11 +4,13 @@
 #ifndef PIXEL_CIRCLE_H
 #define PIXEL_CIRCLE_H
 
+#if BUILD_SHARED_LIBS
 #if defined(_WIN32)
 #if defined(EXPORTING)
 #define DECLSPEC __declspec(dllexport)
 #else
 #define DECLSPEC __declspec(dllimport)
+#endif
 #endif
 #else
 #define DECLSPEC
