@@ -12,7 +12,7 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_library(pixel-circle
+add_library(pixel-circle ${BUILD_SHARED_LIBS}
         ${PROJECT_SOURCE_DIR}/include/pixel-circle.h
         ${PROJECT_SOURCE_DIR}/src/pixel-circle.cpp
 )
